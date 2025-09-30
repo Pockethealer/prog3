@@ -14,9 +14,8 @@ public class Shell {
             String line = new String();
             try {
                 line = br.readLine();
-                // use line here
             } catch (IOException e) {
-                e.printStackTrace(); // print error
+                e.printStackTrace();
             }
             if (line == null) {
                 break;
@@ -154,7 +153,6 @@ public class Shell {
         int n = 10;
         String filename;
 
-        // parse arguments
         if (args.length < 2) {
             System.out.println("Usage: head -n lines file");
             return;
