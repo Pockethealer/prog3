@@ -1,0 +1,35 @@
+[ {
+  "ingredients" : [ {
+    "name" : "test1",
+    "quantity" : 1.0,
+    "unit" : "g"
+  }, {
+    "name" : "test2",
+    "quantity" : 1.0,
+    "unit" : "g"
+  } ],
+  "instructions" : "",
+  "name" : "test",
+  "preparationTime" : 120,
+  "servings" : 4
+}, {
+  "ingredients" : [ {
+    "name" : "tészta",
+    "quantity" : 1.0,
+    "unit" : "kg"
+  } ],
+  "instructions" : "Tésztaaaa!!!!",
+  "name" : "Bolognai",
+  "preparationTime" : 50,
+  "servings" : 3
+}, {
+  "ingredients" : [ {
+    "name" : "test",
+    "quantity" : 1.0,
+    "unit" : "g"
+  } ],
+  "instructions" : "",
+  "name" : "test1",
+  "preparationTime" : 120,
+  "servings" : 4
+} ]

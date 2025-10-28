@@ -1,0 +1,41 @@
+{
+  "test" : {
+    "favoriteRecipes" : [ ],
+    "username" : "test",
+    "weeklyMenu" : {
+      "Monday" : [ ],
+      "Thursday" : [ ],
+      "Friday" : [ ],
+      "Sunday" : [ ],
+      "Wednesday" : [ ],
+      "Tuesday" : [ ],
+      "Saturday" : [ ]
+    }
+  },
+  "haha" : {
+    "favoriteRecipes" : [ ],
+    "username" : "haha",
+    "weeklyMenu" : {
+      "Monday" : [ ],
+      "Thursday" : [ ],
+      "Friday" : [ ],
+      "Sunday" : [ ],
+      "Wednesday" : [ ],
+      "Tuesday" : [ ],
+      "Saturday" : [ ]
+    }
+  },
+  "Julcsa" : {
+    "favoriteRecipes" : [ ],
+    "username" : "Julcsa",
+    "weeklyMenu" : {
+      "Monday" : [ ],
+      "Thursday" : [ ],
+      "Friday" : [ ],
+      "Sunday" : [ ],
+      "Wednesday" : [ ],
+      "Tuesday" : [ ],
+      "Saturday" : [ ]
+    }
+  }
+}
