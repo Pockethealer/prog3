@@ -42,9 +42,9 @@ class UserManagerTest {
         String username = "Test";
         assertTrue(userManager.registerUser(username), "Failed to register user");
         assertTrue(userManager.loginUser(username), "failed to set current user");
-        Optional<User> currentUser = userManager.getCurrentlyLoggedInUser();
-        assertTrue(currentUser.isPresent(), "There should be a current user.");
-        assertEquals(username, currentUser.get().getUsername(), "The current users name is wrong");
+        User currentUser = userManager.getCurrentlyLoggedInUser();
+        assertNotNull(currentUser, "There should be a current user.");
+        assertEquals(username, currentUser.getUsername(), "The current users name is wrong");
     }
 
     @Test
@@ -57,7 +57,7 @@ class UserManagerTest {
     @Test
     void testLoginNonExistentUserFails() {
         assertFalse(userManager.loginUser("123"), "Non existent user shouldnt be able to log in");
-        assertTrue(userManager.getCurrentlyLoggedInUser().isEmpty(), "No current user since the login was invalid");
+        assertNull(userManager.getCurrentlyLoggedInUser(), "No current user since the login was invalid");
     }
 
     @Test
@@ -65,7 +65,7 @@ class UserManagerTest {
         String username = "TestElek";
         userManager.registerUser(username);
         userManager.loginUser(username);
-        User user = userManager.getCurrentlyLoggedInUser().get();
+        User user = userManager.getCurrentlyLoggedInUser();
         user.addFavoriteRecipe(recipe1);
         user.addFavoriteRecipe(recipe1);
 
@@ -80,7 +80,7 @@ class UserManagerTest {
         String username = "Test";
         userManager.registerUser(username);
         userManager.loginUser(username);
-        User user = userManager.getCurrentlyLoggedInUser().get();
+        User user = userManager.getCurrentlyLoggedInUser();
         String day = "Tuesday";
         user.addRecipeToDay(day, recipe1);
         user.addRecipeToDay(day, recipe2);

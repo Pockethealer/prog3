@@ -210,7 +210,7 @@ public class AddRecipeDialog extends JDialog {
             } else {
                 recipeBook.updateRecipe(originalRecipe, newRecipe);
             }
-            parent.refreshRecipeTable();
+            parent.refreshRecipeTable(recipeBook.getRecipes());
             JOptionPane.showMessageDialog(this, "Recipe successfully saved", "Success",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -232,7 +232,7 @@ public class AddRecipeDialog extends JDialog {
         if (confirmation == JOptionPane.YES_OPTION) {
             try {
                 recipeBook.removeRecipe(originalRecipe);
-                parent.refreshRecipeTable();
+                parent.refreshRecipeTable(recipeBook.getRecipes());
                 JOptionPane.showMessageDialog(this, "'" + originalRecipe.getName() + "' successfully deleted",
                         "Success",
                         JOptionPane.INFORMATION_MESSAGE);

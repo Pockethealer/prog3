@@ -103,7 +103,7 @@ public class RecipeDetailDialog extends JDialog {
 
         if (confirmation == JOptionPane.YES_OPTION) {
             recipeBook.removeRecipe(currentRecipe); // Logika hívása
-            parentGUI.refreshRecipeTable(); // GUI frissítése
+            parentGUI.refreshRecipeTable(recipeBook.getRecipes()); // GUI frissítése
             dispose(); // Ablak bezárása
         }
     }
@@ -128,7 +128,7 @@ public class RecipeDetailDialog extends JDialog {
             recipeBook.updateRecipe(currentRecipe, modifiedRecipe);
 
             // 4. GUI FRISSÍTÉSE
-            parentGUI.refreshRecipeTable();
+            parentGUI.refreshRecipeTable(recipeBook.getRecipes());
 
             JOptionPane.showMessageDialog(this, "Recept sikeresen módosítva!", "Siker",
                     JOptionPane.INFORMATION_MESSAGE);

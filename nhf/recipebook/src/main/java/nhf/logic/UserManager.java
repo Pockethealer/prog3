@@ -12,14 +12,14 @@ import java.io.File;
 public class UserManager {
 
     private Map<String, User> users;
-    private Optional<User> currentlyLoggedInUser;
+    private User currentlyLoggedInUser;
 
     private final JsonHandler jsonHandler;
     private File userFile;
 
     public UserManager() {
         this.jsonHandler = new JsonHandler();
-        this.currentlyLoggedInUser = Optional.empty();
+        this.currentlyLoggedInUser = null;
         userFile = new File("users.json");
         try {
             this.users = jsonHandler.loadUsers(userFile);
@@ -31,7 +31,7 @@ public class UserManager {
 
     public UserManager(File userFileOptional) {
         this.jsonHandler = new JsonHandler();
-        this.currentlyLoggedInUser = Optional.empty();
+        this.currentlyLoggedInUser = null;
         userFile = userFileOptional;
         try {
             this.users = jsonHandler.loadUsers(userFile);
@@ -67,10 +67,10 @@ public class UserManager {
     public boolean loginUser(String username) {
         User user = users.get(username);
         if (user != null) {
-            this.currentlyLoggedInUser = Optional.of(user);
+            this.currentlyLoggedInUser = user;
             return true;
         }
-        this.currentlyLoggedInUser = Optional.empty();
+        this.currentlyLoggedInUser = null;
         return false;
     }
 
@@ -90,11 +90,11 @@ public class UserManager {
 
     public void logout() {
 
-        this.currentlyLoggedInUser = Optional.empty();
+        this.currentlyLoggedInUser = null;
 
     }
 
-    public Optional<User> getCurrentlyLoggedInUser() {
+    public User getCurrentlyLoggedInUser() {
         return currentlyLoggedInUser;
     }
 

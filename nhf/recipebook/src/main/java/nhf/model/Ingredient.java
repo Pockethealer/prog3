@@ -1,5 +1,7 @@
 package nhf.model;
 
+import java.util.Objects;
+
 /* Az összetevőket reprezentáló class */
 public class Ingredient {
 
@@ -55,5 +57,23 @@ public class Ingredient {
     @Override
     public String toString() {
         return name + " (" + quantity + " " + unit + ")";
+    }
+
+    // Ez a kettő csak azért kell mert később szerializálás során külön objektum
+    // referenciák keletkeznek ugyanahoz a recepthez és a helyes logikához kell hogy
+    // akkor is megtalálják őket a metódusok
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true; // Ha ugyanaz a referencia
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Ingredient ing = (Ingredient) o;
+        return name.equalsIgnoreCase(ing.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name.toLowerCase());
     }
 }

@@ -2,6 +2,7 @@ package nhf.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /* Ez a fő recepteket kezelő class, amiben megtalálhatóak privát változóként a recept tulajdonságai */
 public class Recipe {
@@ -82,5 +83,23 @@ public class Recipe {
     /* Összetevőt hozzáadó fv. */
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
+    }
+
+    // Ez a kettő csak azért kell mert később szerializálás során külön objektum
+    // referenciák keletkeznek ugyanahoz a recepthez és a helyes logikához kell hogy
+    // akkor is megtalálják őket a metódusok
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true; // Ha ugyanaz a referencia
+        if (o == null || getClass() != o.getClass())
+            return false;
+        Recipe recipe = (Recipe) o;
+        return name.equalsIgnoreCase(recipe.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name.toLowerCase());
     }
 }

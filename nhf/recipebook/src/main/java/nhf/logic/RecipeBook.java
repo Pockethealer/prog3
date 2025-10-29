@@ -82,7 +82,7 @@ public class RecipeBook {
     }
 
     // Logikai metódusok
-
+    // TODO remove not used methods
     /**
      * A filtereléshez használt metódus
      * 

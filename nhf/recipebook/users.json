@@ -1,6 +1,62 @@
 {
   "test" : {
-    "favoriteRecipes" : [ ],
+    "favoriteRecipes" : [ {
+      "ingredients" : [ {
+        "name" : "test1",
+        "quantity" : 1.0,
+        "unit" : "g"
+      }, {
+        "name" : "test2",
+        "quantity" : 1.0,
+        "unit" : "g"
+      } ],
+      "instructions" : "",
+      "name" : "test",
+      "preparationTime" : 120,
+      "servings" : 4
+    }, {
+      "ingredients" : [ {
+        "name" : "Csokoládé (ét)",
+        "quantity" : 200.0,
+        "unit" : "g"
+      }, {
+        "name" : "Tojás",
+        "quantity" : 3.0,
+        "unit" : "db"
+      } ],
+      "instructions" : "Olvassz meg mindent, keverd össze, süsd 30 percig.",
+      "name" : "Fantasztikus Brownie",
+      "preparationTime" : 45,
+      "servings" : 12
+    }, {
+      "ingredients" : [ {
+        "name" : "Tojás",
+        "quantity" : 4.0,
+        "unit" : "db"
+      }, {
+        "name" : "Bacon",
+        "quantity" : 50.0,
+        "unit" : "g"
+      } ],
+      "instructions" : "Süssed a bacont, utána a tükörtojást.",
+      "name" : "Hétvégi Reggeli",
+      "preparationTime" : 15,
+      "servings" : 2
+    }, {
+      "ingredients" : [ {
+        "name" : "Burgonya",
+        "quantity" : 1000.0,
+        "unit" : "g"
+      }, {
+        "name" : "Olaj",
+        "quantity" : 50.0,
+        "unit" : "ml"
+      } ],
+      "instructions" : "Süssed aranybarnára.",
+      "name" : "Ropogós Sültkrumpli",
+      "preparationTime" : 35,
+      "servings" : 2
+    } ],
     "username" : "test",
     "weeklyMenu" : {
       "Monday" : [ ],
@@ -13,7 +69,21 @@
     }
   },
   "haha" : {
-    "favoriteRecipes" : [ ],
+    "favoriteRecipes" : [ {
+      "ingredients" : [ {
+        "name" : "test1",
+        "quantity" : 1.0,
+        "unit" : "g"
+      }, {
+        "name" : "test2",
+        "quantity" : 1.0,
+        "unit" : "g"
+      } ],
+      "instructions" : "",
+      "name" : "test",
+      "preparationTime" : 120,
+      "servings" : 4
+    } ],
     "username" : "haha",
     "weeklyMenu" : {
       "Monday" : [ ],
@@ -25,9 +95,23 @@
       "Saturday" : [ ]
     }
   },
-  "Julcsa" : {
-    "favoriteRecipes" : [ ],
-    "username" : "Julcsa",
+  "test2" : {
+    "favoriteRecipes" : [ {
+      "ingredients" : [ {
+        "name" : "test1",
+        "quantity" : 1.0,
+        "unit" : "g"
+      }, {
+        "name" : "test2",
+        "quantity" : 1.0,
+        "unit" : "g"
+      } ],
+      "instructions" : "",
+      "name" : "test",
+      "preparationTime" : 120,
+      "servings" : 4
+    } ],
+    "username" : "test2",
     "weeklyMenu" : {
       "Monday" : [ ],
       "Thursday" : [ ],
