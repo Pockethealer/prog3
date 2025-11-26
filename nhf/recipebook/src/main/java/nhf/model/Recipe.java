@@ -1,6 +1,7 @@
 package nhf.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,11 +12,13 @@ public class Recipe {
     private int preparationTime;
     private int servings;
     private String instructions;
-    private List<Ingredient> ingredients;
+    private List<RecipeIngredient> ingredients;
+    private List<String> tags;
 
     /* default constructor a deszerializáláshoz */
     public Recipe() {
         this.ingredients = new ArrayList<>();
+        this.tags = new ArrayList<>();
     }
 
     /**
@@ -28,12 +31,13 @@ public class Recipe {
      * @param ingredients     Lista az összetevőkről
      */
     public Recipe(String name, int preparationTime, int servings, String instructions,
-            List<Ingredient> ingredients) {
+            List<RecipeIngredient> ingredients, List<String> tags) {
         this.name = name;
         this.preparationTime = preparationTime;
         this.servings = servings;
         this.instructions = instructions;
         this.ingredients = new ArrayList<>(ingredients);
+        this.tags = tags != null ? tags : new ArrayList<>();
     }
 
     // Getterek
@@ -54,7 +58,7 @@ public class Recipe {
         return instructions;
     }
 
-    public List<Ingredient> getIngredients() {
+    public List<RecipeIngredient> getIngredients() {
         return ingredients;
     }
 
@@ -76,13 +80,26 @@ public class Recipe {
         this.instructions = instructions;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
+    public void setIngredients(List<RecipeIngredient> ingredients) {
         this.ingredients = ingredients;
     }
 
     /* Összetevőt hozzáadó fv. */
-    public void addIngredient(Ingredient ingredient) {
+    public void addIngredient(RecipeIngredient ingredient) {
         this.ingredients.add(ingredient);
+    }
+
+    public double getTotalCalories() {
+        return this.ingredients.stream()
+                .mapToDouble(RecipeIngredient::getTotalCalories)
+                .sum();
+    }
+
+    public double getCaloriesPerServing() {
+        double totalCalories = getTotalCalories();
+        if (servings <= 0)
+            return 0.0;
+        return totalCalories / servings;
     }
 
     // Ez a kettő csak azért kell mert később szerializálás során külön objektum
@@ -101,5 +118,18 @@ public class Recipe {
     @Override
     public int hashCode() {
         return Objects.hash(name.toLowerCase());
+    }
+
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
+    public List<String> getTags() {
+        return tags != null ? tags : new ArrayList<>();
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags != null ? tags : new ArrayList<>();
     }
 }

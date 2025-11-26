@@ -1,25 +1,33 @@
 package nhf.logic;
 
 import nhf.model.Recipe;
+import nhf.model.IngredientTemplate;
 import nhf.io.JsonHandler;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /* A program logikájának az alapja, a receptkönyv class */
 public class RecipeBook {
     JsonHandler jsonHandler;
     private List<Recipe> recipes;
     private File recipeFile;
+    private File ingredientFile;
+    private Map<String, IngredientTemplate> ingredientTemplates;
 
     /**
      * Konstruktor, létrehoz egy új listát a recepteknek
      */
     public RecipeBook() {
         recipeFile = new File("recipes.json");
+        ingredientFile = new File("ingredients.json");
         jsonHandler = new JsonHandler();
+        this.ingredientTemplates = new HashMap<>();
         try {
             importRecipes();
         } catch (Exception e) {
@@ -28,15 +36,18 @@ public class RecipeBook {
         }
     }
 
-    public RecipeBook(File recipeFileOptional) {
+    public RecipeBook(File recipeFileOptional, File ingredientFileOptional) {
         recipeFile = recipeFileOptional;
+        ingredientFile = ingredientFileOptional;
         jsonHandler = new JsonHandler();
         this.recipes = new ArrayList<>();
+        this.ingredientTemplates = new HashMap<>();
         try {
             importRecipes();
         } catch (Exception e) {
             System.err.println("Error on loading recipes: " + e.getMessage());
             this.recipes = new ArrayList<>();
+            this.ingredientTemplates = new HashMap<>();
         }
     }
 
@@ -116,8 +127,28 @@ public class RecipeBook {
         jsonHandler.saveRecipes(this.recipes, recipeFile);
     }
 
+    // mivel egyszer importálunk ezért ezt összevontam az összetevőkkel
     public void importRecipes() throws Exception {
+        List<IngredientTemplate> templates = jsonHandler.loadIngredientTemplates(ingredientFile);
         this.recipes = jsonHandler.loadRecipes(recipeFile);
+        templates.forEach(t -> ingredientTemplates.put(t.getName().toLowerCase(), t));
+        linkRecipeIngredientsToTemplates();
+    }
+
+    // összekapcsolja a templátot a tényleges összetevővel
+    private void linkRecipeIngredientsToTemplates() {
+        this.recipes.stream()
+                .flatMap(recipe -> recipe.getIngredients().stream())
+                .forEach(recipeIngredient -> {
+                    String templateName = recipeIngredient.getName().toLowerCase();
+                    IngredientTemplate template = ingredientTemplates.get(templateName);
+                    if (template != null) {
+                        recipeIngredient.setTemplate(template);
+                    } else {
+                        System.err.println(
+                                "ingredient template not found: " + recipeIngredient.getName());
+                    }
+                });
     }
 
     /**
@@ -142,5 +173,46 @@ public class RecipeBook {
                 System.err.println("Error updating recipe: " + e.getMessage());
             }
         }
+    }
+
+    public Map<String, IngredientTemplate> getIngredientTemplates() {
+        return Collections.unmodifiableMap(this.ingredientTemplates);
+    }
+
+    public void addTemplate(IngredientTemplate template) {
+        if (template == null)
+            return;
+        this.ingredientTemplates.put(template.getName().toLowerCase(), template);
+        try {
+            exportTemplates();
+        } catch (Exception e) {
+            System.err.println("Error saving ingredient templates: " + e.getMessage());
+        }
+    }
+
+    public boolean removeTemplate(String templateName) {
+        if (templateName == null)
+            return false;
+        boolean wasRemoved = this.ingredientTemplates.remove(templateName.toLowerCase()) != null;
+        if (wasRemoved) {
+            try {
+                exportTemplates();
+            } catch (Exception e) {
+                System.err.println("Error saving ingredient templates after removal: " + e.getMessage());
+            }
+        }
+        return wasRemoved;
+    }
+
+    public void exportTemplates() throws Exception {
+        List<IngredientTemplate> templatesToSave = new ArrayList<>(this.ingredientTemplates.values());
+        jsonHandler.saveIngredientTemplates(templatesToSave, ingredientFile);
+    }
+
+    public Recipe getRecipeByName(String name) {
+        return recipes.stream()
+                .filter(r -> r.getName().equalsIgnoreCase(name))
+                // feltesszük hogy ilyen nem lesz
+                .findFirst().orElseGet(null);
     }
 }

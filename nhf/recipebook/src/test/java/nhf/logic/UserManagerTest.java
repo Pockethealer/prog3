@@ -1,6 +1,8 @@
 package nhf.logic;
 
-import nhf.model.Ingredient;
+import nhf.model.RecipeIngredient;
+import nhf.model.Unit;
+import nhf.model.IngredientTemplate;
 import nhf.model.Recipe;
 import nhf.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +11,6 @@ import org.junit.jupiter.api.io.TempDir;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Optional;
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,11 +30,16 @@ class UserManagerTest {
 
     @BeforeEach
     void setUp() {
-        Ingredient ingredient = new Ingredient("Víz", 100, "ml");
-        List<Ingredient> ingredients = new ArrayList<>();
+        IngredientTemplate waterTemplate = new IngredientTemplate("Víz", 0, 0, 0, 0, Map.of("ML", 1.0));
+        RecipeIngredient ingredient = new RecipeIngredient("Víz", 200, Unit.ML);
+        ingredient.setTemplate(waterTemplate);
+        List<RecipeIngredient> ingredients = new ArrayList<>();
         ingredients.add(ingredient);
-        recipe1 = new Recipe("Teszt Kávé", 5, 1, "asdf", ingredients);
-        recipe2 = new Recipe("Teszt Tea", 3, 1, "1223", new ArrayList<>());
+        List<String> tags = new ArrayList<>();
+        tags.add("easy");
+        tags.add("fast");
+        recipe1 = new Recipe("Teszt Kávé", 5, 1, "asdf", ingredients, tags);
+        recipe2 = new Recipe("Teszt Tea", 3, 1, "1223", new ArrayList<>(), tags);
         userManager = new UserManager(new File(tempDir, "temp.json"));
     }
 
@@ -71,7 +77,7 @@ class UserManagerTest {
 
         assertEquals(1, user.getFavoriteRecipes().size(),
                 "There should only be one recipe after adding the same recipe twice");
-        assertTrue(user.getFavoriteRecipes().contains(recipe1),
+        assertTrue(user.getFavoriteRecipes().contains(recipe1.getName()),
                 "The added recipe should be in the list of favorites");
     }
 
@@ -85,10 +91,11 @@ class UserManagerTest {
         user.addRecipeToDay(day, recipe1);
         user.addRecipeToDay(day, recipe2);
 
-        Map<String, List<Recipe>> menu = user.getWeeklyMenu();
+        Map<String, List<String>> menu = user.getWeeklyMenu();
         assertTrue(menu.containsKey(day), "The day should be in the map keyset");
         assertEquals(2, menu.get(day).size(), "There should be two recipes on the day");
-        assertTrue(menu.get(day).contains(recipe2), "The added recipe should be in the list of the given day");
+        assertTrue(menu.get(day).contains(recipe2.getName()),
+                "The added recipe should be in the list of the given day");
         user.clearDay(day);
         assertEquals(0, menu.get(day).size(), "The list is not empty after clearing the day");
     }

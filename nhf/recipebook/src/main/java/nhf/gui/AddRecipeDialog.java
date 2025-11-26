@@ -1,7 +1,8 @@
 package nhf.gui;
 
 import nhf.logic.RecipeBook;
-import nhf.model.Ingredient;
+import nhf.model.RecipeIngredient;
+import nhf.model.IngredientTemplate;
 import nhf.model.Recipe;
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
@@ -9,7 +10,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddRecipeDialog extends JDialog {
     private static final int DEFAULT_SERVING_SIZE = 4;
@@ -18,25 +22,30 @@ public class AddRecipeDialog extends JDialog {
     private final RecipeBook recipeBook;
     private final RecipeBookGUI parent;
     private final Recipe originalRecipe;
-    private final List<Ingredient> currentIngredients = new ArrayList<>();
+    private final List<RecipeIngredient> currentIngredients = new ArrayList<>();
 
     // UI elemek
     private JTextField nameField;
     private JFormattedTextField timeField;
     private JFormattedTextField servingField;
+    private JTextField tagsField;
     private JTextArea instructionsArea;
-    private JList<Ingredient> ingredientList;
-    private DefaultListModel<Ingredient> listModel;
+    private JList<RecipeIngredient> ingredientList;
+    private DefaultListModel<RecipeIngredient> listModel;
+
     // megfelelő gombok(szerkesztés vagy létrehozás nézet)
     private JButton removeIngredientButton;
     private JButton saveButton;
     private JButton deleteRecipeButton;
+    private final Map<String, IngredientTemplate> templateMap;
 
-    public AddRecipeDialog(RecipeBookGUI parent, RecipeBook recipeBook, Recipe recipeToEdit) {
+    public AddRecipeDialog(RecipeBookGUI parent, RecipeBook recipeBook, Recipe recipeToEdit,
+            Map<String, IngredientTemplate> templateMap) {
         super(parent, "Add new recipe", true);
         this.recipeBook = recipeBook;
         this.parent = parent;
         this.originalRecipe = recipeToEdit;
+        this.templateMap = templateMap;
         setTitle(recipeToEdit == null ? "Add new recipe" : "Edit recipe: " + recipeToEdit.getName());
         setupGUI();
         if (recipeToEdit != null) {
@@ -55,6 +64,8 @@ public class AddRecipeDialog extends JDialog {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         nameField = new JTextField(20);
+        tagsField = new JTextField(20);
+
         instructionsArea = new JTextArea(5, 20);
         // kikényszerítem már gui szinten a helyes bevitelt, hogy később ne legyen gond
         // az integerré alakítással, így létrehozok egy formattert és utána egy
@@ -93,12 +104,20 @@ public class AddRecipeDialog extends JDialog {
         gbc.gridy = 2;
         infoPanel.add(servingField, gbc);
 
-        // Elkészítés
+        // tagek
         gbc.gridx = 0;
         gbc.gridy = 3;
-        infoPanel.add(new JLabel("Instructions:"), gbc);
+        infoPanel.add(new JLabel("Tags:"), gbc);
         gbc.gridx = 1;
         gbc.gridy = 3;
+        infoPanel.add(new JScrollPane(tagsField), gbc);
+
+        // Elkészítés
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        infoPanel.add(new JLabel("Instructions:"), gbc);
+        gbc.gridx = 1;
+        gbc.gridy = 4;
         infoPanel.add(new JScrollPane(instructionsArea), gbc);
 
         add(infoPanel, BorderLayout.NORTH);
@@ -148,14 +167,18 @@ public class AddRecipeDialog extends JDialog {
         currentIngredients.addAll(recipe.getIngredients());
         currentIngredients.forEach(ing -> listModel.addElement(ing));
         updateIngredientButtons();
+        if (!recipe.getTags().isEmpty()) {
+            tagsField.setText(String.join(", ", recipe.getTags()));
+
+        }
     }
 
     /* az add ingredient dialog hívása */
     private void showAddIngredientDialog() {
-        AddIngredientDialog dialog = new AddIngredientDialog(parent);
+        AddIngredientDialog dialog = new AddIngredientDialog(parent, templateMap);
         dialog.setVisible(true);
 
-        Ingredient newIngredient = dialog.getIngredient();
+        RecipeIngredient newIngredient = dialog.getRecipeIngredient();
         if (newIngredient != null) {
             currentIngredients.add(newIngredient);
             listModel.addElement(newIngredient);
@@ -190,7 +213,14 @@ public class AddRecipeDialog extends JDialog {
             String name = nameField.getText().trim();
             int time = (Integer) timeField.getValue();
             int servings = (Integer) servingField.getValue();
+            String tagsInput = tagsField.getText().trim();
+            List<String> newTags = tagsInput.isEmpty() ? new ArrayList<>()
+                    : Arrays.stream(tagsInput.split(","))
+                            .map(String::trim)
+                            .filter(tag -> !tag.isEmpty())
+                            .collect(Collectors.toList());
             String instructions = instructionsArea.getText().trim();
+
             if (name.isEmpty() || currentIngredients.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "You need to name the recipe and give it one ingredient", "Error",
                         JOptionPane.WARNING_MESSAGE);
@@ -204,7 +234,7 @@ public class AddRecipeDialog extends JDialog {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            Recipe newRecipe = new Recipe(name, time, servings, instructions, currentIngredients);
+            Recipe newRecipe = new Recipe(name, time, servings, instructions, currentIngredients, newTags);
             if (originalRecipe == null) {
                 recipeBook.addRecipe(newRecipe);
             } else {

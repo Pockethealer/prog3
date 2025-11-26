@@ -1,197 +1,81 @@
-[
-  {
-    "ingredients": [
-      {
-        "name": "Főtt Tészta",
-        "quantity": 400.0,
-        "unit": "g"
-      },
-      {
-        "name": "Darálthús",
-        "quantity": 500.0,
-        "unit": "g"
-      },
-      {
-        "name": "Paradicsomszósz",
-        "quantity": 300.0,
-        "unit": "ml"
-      }
-    ],
-    "instructions": "Pirítsd meg a húst, add hozzá a szószt, főzd össze. Tálald tésztával és parmezánnal.",
-    "name": "Klasszikus Bolognai",
-    "preparationTime": 50,
-    "servings": 4
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Liszt",
-        "quantity": 250.0,
-        "unit": "g"
-      },
-      {
-        "name": "Élesztő",
-        "quantity": 25.0,
-        "unit": "g"
-      },
-      {
-        "name": "Mozzarella",
-        "quantity": 150.0,
-        "unit": "g"
-      }
-    ],
-    "instructions": "Készíts tésztát, keleszd meg, tedd rá a feltétet, süsd 220 fokon.",
-    "name": "Házi Pizza",
-    "preparationTime": 40,
-    "servings": 3
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Csokoládé (ét)",
-        "quantity": 200.0,
-        "unit": "g"
-      },
-      {
-        "name": "Tojás",
-        "quantity": 3.0,
-        "unit": "db"
-      }
-    ],
-    "instructions": "Olvassz meg mindent, keverd össze, süsd 30 percig.",
-    "name": "Fantasztikus Brownie",
-    "preparationTime": 45,
-    "servings": 12
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Burgonya",
-        "quantity": 1000.0,
-        "unit": "g"
-      },
-      {
-        "name": "Olaj",
-        "quantity": 50.0,
-        "unit": "ml"
-      }
-    ],
-    "instructions": "Süssed aranybarnára.",
-    "name": "Ropogós Sültkrumpli",
-    "preparationTime": 35,
-    "servings": 2
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Víz",
-        "quantity": 1.0,
-        "unit": "l"
-      },
-      {
-        "name": "Kávé",
-        "quantity": 100.0,
-        "unit": "g"
-      }
-    ],
-    "instructions": "Őröld, főzd, idd.",
-    "name": "Reggeli Kávé",
-    "preparationTime": 10,
-    "servings": 1
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Alma",
-        "quantity": 8.0,
-        "unit": "db"
-      },
-      {
-        "name": "Fahéj",
-        "quantity": 1.0,
-        "unit": "tk"
-      }
-    ],
-    "instructions": "Készíts omlós tésztát, töltsd meg az almás töltelékkel, süsd ropogósra.",
-    "name": "Egyszerű Almáspite",
-    "preparationTime": 90,
-    "servings": 8
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Tojás",
-        "quantity": 4.0,
-        "unit": "db"
-      },
-      {
-        "name": "Bacon",
-        "quantity": 50.0,
-        "unit": "g"
-      }
-    ],
-    "instructions": "Süssed a bacont, utána a tükörtojást.",
-    "name": "Hétvégi Reggeli",
-    "preparationTime": 15,
-    "servings": 2
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Lazac Filé",
-        "quantity": 400.0,
-        "unit": "g"
-      },
-      {
-        "name": "Citrom",
-        "quantity": 0.5,
-        "unit": "db"
-      }
-    ],
-    "instructions": "Fűszerezd, süsd serpenyőben 5 percig oldalanként.",
-    "name": "Gyors Lazac",
-    "preparationTime": 20,
-    "servings": 2
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Marhahús (kocka)",
-        "quantity": 800.0,
-        "unit": "g"
-      },
-      {
-        "name": "Vöröshagyma",
-        "quantity": 2.0,
-        "unit": "db"
-      },
-      {
-        "name": "Paprika (édes)",
-        "quantity": 1.0,
-        "unit": "ek"
-      }
-    ],
-    "instructions": "Pörkölt alap készítése, a hús puhára főzése kb. 2 óra.",
-    "name": "Igazi Marhapörkölt",
-    "preparationTime": 150,
-    "servings": 6
-  },
-  {
-    "ingredients": [
-      {
-        "name": "Tej",
-        "quantity": 500.0,
-        "unit": "ml"
-      },
-      {
-        "name": "Cukor",
-        "quantity": 100.0,
-        "unit": "g"
-      }
-    ],
-    "instructions": "Főzd fel a tejet, adj hozzá pudingport.",
-    "name": "Vaníliás Puding",
-    "preparationTime": 25,
-    "servings": 4
-  }
-]
+[ {
+  "caloriesPerServing" : 12.34375,
+  "ingredients" : [ {
+    "name" : "tej",
+    "quantity" : 1.0,
+    "unit" : "cup"
+  }, {
+    "name" : "cukor",
+    "quantity" : 1.0,
+    "unit" : "tbs"
+  } ],
+  "instructions" : "asdfsadf",
+  "name" : "műzli",
+  "preparationTime" : 20,
+  "servings" : 4,
+  "tags" : [ "easy", "fast" ],
+  "totalCalories" : 49.375
+}, {
+  "caloriesPerServing" : 142.625,
+  "ingredients" : [ {
+    "name" : "Liszt",
+    "quantity" : 2.5,
+    "unit" : "cup"
+  }, {
+    "name" : "Tojás",
+    "quantity" : 3.0,
+    "unit" : "pc"
+  }, {
+    "name" : "Cukor",
+    "quantity" : 100.0,
+    "unit" : "g"
+  } ],
+  "instructions" : "Összegyúrni, keleszteni, majd megformázni.",
+  "name" : "Könnyű Kifli Tészta",
+  "preparationTime" : 60,
+  "servings" : 12,
+  "tags" : [ "sütés", "alap" ],
+  "totalCalories" : 1711.5
+}, {
+  "caloriesPerServing" : 19.35,
+  "ingredients" : [ {
+    "name" : "Víz",
+    "quantity" : 1.0,
+    "unit" : "l"
+  }, {
+    "name" : "Cukor",
+    "quantity" : 2.0,
+    "unit" : "tbs"
+  }, {
+    "name" : "Só",
+    "quantity" : 1.0,
+    "unit" : "ts"
+  } ],
+  "instructions" : "Felforralni, majd kihűteni. Italokhoz vagy szószokhoz alapot képez.",
+  "name" : "Egyszerű Szirup Alap",
+  "preparationTime" : 10,
+  "servings" : 5,
+  "tags" : [ "folyadék", "gyors", "fast" ],
+  "totalCalories" : 96.75
+}, {
+  "caloriesPerServing" : 441.5,
+  "ingredients" : [ {
+    "name" : "Liszt",
+    "quantity" : 100.0,
+    "unit" : "g"
+  }, {
+    "name" : "Tojás",
+    "quantity" : 1.0,
+    "unit" : "pc"
+  }, {
+    "name" : "Víz",
+    "quantity" : 50.0,
+    "unit" : "ml"
+  } ],
+  "instructions" : "Alap tészta kis adaghoz. Főzzük 10 percig.",
+  "name" : "Mini Tészta Adag",
+  "preparationTime" : 20,
+  "servings" : 1,
+  "tags" : [ "egyszemélyes" ],
+  "totalCalories" : 441.5
+} ]

@@ -1,6 +1,8 @@
 package nhf.io;
 
-import nhf.model.Ingredient;
+import nhf.model.RecipeIngredient;
+import nhf.model.Unit;
+import nhf.model.IngredientTemplate;
 import nhf.model.Recipe;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,8 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -26,12 +30,21 @@ class JsonHandlerTest {
     void setUp() {
         jsonHandler = new JsonHandler();
         testRecipes = new ArrayList<>();
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(new Ingredient("Víz", 200, "ml"));
-        ingredients.add(new Ingredient("Kávé", 10, "g"));
+        List<RecipeIngredient> ingredients = new ArrayList<>();
+        IngredientTemplate waterTemplate = new IngredientTemplate("Víz", 0, 0, 0, 0, Map.of("ML", 1.0));
+        IngredientTemplate coffeeTemplate = new IngredientTemplate("Kávé", 100, 5, 0, 15, Map.of("G", 1.0));
+        RecipeIngredient water = new RecipeIngredient("Víz", 200, Unit.ML);
+        water.setTemplate(waterTemplate);
+        ingredients.add(water);
+        RecipeIngredient coffee = new RecipeIngredient("Kávé", 10, Unit.G);
+        coffee.setTemplate(coffeeTemplate);
+        ingredients.add(coffee);
 
-        testRecipes.add(new Recipe("Simple Coffee", 5, 1, "Boil water, mix.", ingredients));
-        testRecipes.add(new Recipe("Tea", 3, 1, "Steep the bag.", new ArrayList<>()));
+        List<String> tags = new ArrayList<>();
+        tags.add("easy");
+        tags.add("fast");
+        testRecipes.add(new Recipe("Simple Coffee", 5, 1, "Boil water, mix.", ingredients, tags));
+        testRecipes.add(new Recipe("Tea", 3, 1, "Steep the bag.", new ArrayList<>(), tags));
     }
 
     @Test

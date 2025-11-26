@@ -1,9 +1,12 @@
 package nhf.model;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Represents a simplified user, storing their name, favorites (List),
@@ -12,10 +15,10 @@ import java.util.Map;
 public class User {
 
     private String username;
-    private List<Recipe> favoriteRecipes;
+    private List<String> favoriteRecipes;
 
     // A heti menü: String (nap neve) -> List<Recipe>
-    private Map<String, List<Recipe>> weeklyMenu;
+    private Map<String, List<String>> weeklyMenu;
 
     // 💡 Szükséges a Jackson deszerializációhoz!
     public User() {
@@ -29,8 +32,8 @@ public class User {
         this.weeklyMenu = initializeWeeklyMenu();
     }
 
-    private Map<String, List<Recipe>> initializeWeeklyMenu() {
-        Map<String, List<Recipe>> menu = new HashMap<>();
+    private Map<String, List<String>> initializeWeeklyMenu() {
+        Map<String, List<String>> menu = new HashMap<>();
         String[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         for (String day : days) {
             menu.put(day, new ArrayList<>());
@@ -46,31 +49,31 @@ public class User {
         this.username = username;
     }
 
-    public List<Recipe> getFavoriteRecipes() {
+    public List<String> getFavoriteRecipes() {
         return favoriteRecipes;
     }
 
-    public void setFavoriteRecipes(List<Recipe> favoriteRecipes) {
+    public void setFavoriteRecipes(List<String> favoriteRecipes) {
         this.favoriteRecipes = (favoriteRecipes != null) ? favoriteRecipes : new ArrayList<>();
     }
 
-    public Map<String, List<Recipe>> getWeeklyMenu() {
+    public Map<String, List<String>> getWeeklyMenu() {
         return weeklyMenu;
     }
 
-    public void setWeeklyMenu(Map<String, List<Recipe>> weeklyMenu) {
+    public void setWeeklyMenu(Map<String, List<String>> weeklyMenu) {
         this.weeklyMenu = (weeklyMenu != null) ? weeklyMenu : initializeWeeklyMenu();
     }
 
     public void addFavoriteRecipe(Recipe recipe) {
-        if (recipe != null && !favoriteRecipes.contains(recipe)) {
-            favoriteRecipes.add(recipe);
+        if (recipe != null && !favoriteRecipes.contains(recipe.getName())) {
+            favoriteRecipes.add(recipe.getName());
         }
     }
 
     public void addRecipeToDay(String day, Recipe recipe) {
         if (weeklyMenu.containsKey(day) && recipe != null) {
-            weeklyMenu.get(day).add(recipe);
+            weeklyMenu.get(day).add(recipe.getName());
         }
     }
 
@@ -79,4 +82,5 @@ public class User {
             weeklyMenu.get(day).clear();
         }
     }
+
 }

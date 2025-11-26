@@ -11,9 +11,9 @@ import java.util.List;
 public class RecipeTableModel extends AbstractTableModel {
 
     private List<Recipe> recipes;
-    private List<Recipe> userFavorites;
+    private List<String> userFavorites;
     private final UserManager userManager;
-    private final String[] columnNames = { "Name", "Time (min)", "Servings", "Ingredients #", "Favorite" };
+    private final String[] columnNames = { "Name", "Time (min)", "Servings", "Tags", "Kcal / Serving", "Favorite" };
 
     public RecipeTableModel(List<Recipe> recipes, UserManager userManager) {
         this.recipes = recipes;
@@ -49,20 +49,21 @@ public class RecipeTableModel extends AbstractTableModel {
             case 0 -> recipe.getName();
             case 1 -> recipe.getPreparationTime();
             case 2 -> recipe.getServings();
-            case 3 -> recipe.getIngredients().size();
-            case 4 -> userFavorites.contains(recipe);
+            case 3 -> String.join(", ", recipe.getTags());
+            case 4 -> recipe.getCaloriesPerServing();
+            case 5 -> userFavorites.contains(recipe.getName());
             default -> null;
         };
     }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 4;
+        return columnIndex == 5;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if (columnIndex == 4 && aValue instanceof Boolean) {
+        if (columnIndex == 5 && aValue instanceof Boolean) {
             fireTableCellUpdated(rowIndex, columnIndex);
             // innentől átveszi a gui listener
         }
@@ -71,9 +72,10 @@ public class RecipeTableModel extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return switch (columnIndex) {
-            case 0 -> String.class;
-            case 1, 2, 3 -> Integer.class;
-            case 4 -> Boolean.class;
+            case 0, 3 -> String.class;
+            case 1, 2 -> Integer.class;
+            case 4 -> Double.class;
+            case 5 -> Boolean.class;
             default -> super.getColumnClass(columnIndex);
         };
     }

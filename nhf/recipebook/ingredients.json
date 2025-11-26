@@ -1,0 +1,73 @@
+[ {
+  "allUnitsOfIngredient" : [ "G", "PINCH", "TEASPOON" ],
+  "caloriesPer100g" : 0.0,
+  "carbPer100g" : 0.0,
+  "fatPer100g" : 0.0,
+  "name" : "Só",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "PINCH" : 0.5,
+    "TEASPOON" : 6.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "ML", "L", "CUP" ],
+  "caloriesPer100g" : 0.0,
+  "carbPer100g" : 0.0,
+  "fatPer100g" : 0.0,
+  "name" : "Víz",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "ML" : 1.0,
+    "L" : 1000.0,
+    "CUP" : 240.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "G", "KG", "CUP", "TABLESPOON", "TEASPOON" ],
+  "caloriesPer100g" : 364.0,
+  "carbPer100g" : 76.0,
+  "fatPer100g" : 1.0,
+  "name" : "Liszt",
+  "proteinPer100g" : 10.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "KG" : 1000.0,
+    "CUP" : 120.0,
+    "TABLESPOON" : 15.0,
+    "TEASPOON" : 4.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "G", "KG", "TABLESPOON", "TEASPOON" ],
+  "caloriesPer100g" : 387.0,
+  "carbPer100g" : 100.0,
+  "fatPer100g" : 0.0,
+  "name" : "Cukor",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "KG" : 1000.0,
+    "TABLESPOON" : 12.5,
+    "TEASPOON" : 4.2
+  }
+}, {
+  "allUnitsOfIngredient" : [ "PIECES" ],
+  "caloriesPer100g" : 155.0,
+  "carbPer100g" : 1.1,
+  "fatPer100g" : 11.0,
+  "name" : "Tojás",
+  "proteinPer100g" : 13.0,
+  "unitToGramFactors" : {
+    "PIECES" : 50.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "G", "CUP" ],
+  "caloriesPer100g" : 10.0,
+  "carbPer100g" : 0.0,
+  "fatPer100g" : 0.0,
+  "name" : "tej",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "CUP" : 10.0
+  }
+} ]

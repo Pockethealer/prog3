@@ -26,10 +26,13 @@ class RecipeBookTest {
 
     @BeforeEach
     void setUp() {
-        recipeBook = new RecipeBook(new File(tempDir, "temp.json"));
-        pizza = new Recipe("Pepperoni Pizza", 45, 4, "Bake it.", new ArrayList<>());
-        cake = new Recipe("Chocolate Cake", 60, 8, "Mix it.", new ArrayList<>());
-        applePie = new Recipe("Grandma's Apple Pie", 90, 6, "Slice it.", new ArrayList<>());
+        recipeBook = new RecipeBook(new File(tempDir, "temp.json"), new File(tempDir, "temp2.json"));
+        List<String> tags = new ArrayList<>();
+        tags.add("easy");
+        tags.add("fast");
+        pizza = new Recipe("Pepperoni Pizza", 45, 4, "Bake it.", new ArrayList<>(), tags);
+        cake = new Recipe("Chocolate Cake", 60, 8, "Mix it.", new ArrayList<>(), tags);
+        applePie = new Recipe("Grandma's Apple Pie", 90, 6, "Slice it.", new ArrayList<>(), tags);
 
         recipeBook.addRecipe(pizza);
         recipeBook.addRecipe(cake);

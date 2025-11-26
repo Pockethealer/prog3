@@ -3,6 +3,7 @@ package nhf.io;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.json.JsonMapper;
+import nhf.model.IngredientTemplate;
 import nhf.model.Recipe;
 import nhf.model.User;
 import java.io.File;
@@ -35,6 +36,10 @@ public class JsonHandler {
         mapper.writeValue(file, users);
     }
 
+    public void saveIngredientTemplates(List<IngredientTemplate> templates, File file) throws Exception {
+        mapper.writeValue(file, templates);
+    }
+
     // --- LOAD / IMPORT Metódusok ---
 
     public List<Recipe> loadRecipes(File file) throws Exception {
@@ -54,6 +59,14 @@ public class JsonHandler {
         return mapper.readValue(file,
                 mapper.getTypeFactory().constructMapType(Map.class, String.class,
                         User.class));
+    }
+
+    public List<IngredientTemplate> loadIngredientTemplates(File file) throws Exception {
+        if (!file.exists() || file.length() == 0) {
+            return new ArrayList<>();
+        }
+        return mapper.readValue(file,
+                mapper.getTypeFactory().constructCollectionType(List.class, IngredientTemplate.class));
     }
 
 }
