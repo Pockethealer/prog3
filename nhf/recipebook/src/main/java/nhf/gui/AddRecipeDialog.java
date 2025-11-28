@@ -183,6 +183,8 @@ public class AddRecipeDialog extends JDialog {
             currentIngredients.add(newIngredient);
             listModel.addElement(newIngredient);
             updateIngredientButtons();
+            parent.refreshRecipeTable(recipeBook.getRecipes());
+
         }
     }
 
@@ -200,6 +202,7 @@ public class AddRecipeDialog extends JDialog {
 
         currentIngredients.remove(selectedIndex);
         listModel.remove(selectedIndex);
+        parent.refreshRecipeTable(recipeBook.getRecipes());
         updateIngredientButtons();
         JOptionPane.showMessageDialog(this, "Ingredient successfully removed from recipe!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -241,6 +244,7 @@ public class AddRecipeDialog extends JDialog {
                 recipeBook.updateRecipe(originalRecipe, newRecipe);
             }
             parent.refreshRecipeTable(recipeBook.getRecipes());
+            parent.refreshWeeklyMenuTab();
             JOptionPane.showMessageDialog(this, "Recipe successfully saved", "Success",
                     JOptionPane.INFORMATION_MESSAGE);
             dispose();
@@ -263,6 +267,8 @@ public class AddRecipeDialog extends JDialog {
             try {
                 recipeBook.removeRecipe(originalRecipe);
                 parent.refreshRecipeTable(recipeBook.getRecipes());
+                parent.refreshWeeklyMenuTab();
+
                 JOptionPane.showMessageDialog(this, "'" + originalRecipe.getName() + "' successfully deleted",
                         "Success",
                         JOptionPane.INFORMATION_MESSAGE);
@@ -274,4 +280,5 @@ public class AddRecipeDialog extends JDialog {
             }
         }
     }
+
 }

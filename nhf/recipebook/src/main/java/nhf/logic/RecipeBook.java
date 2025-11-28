@@ -209,10 +209,9 @@ public class RecipeBook {
         jsonHandler.saveIngredientTemplates(templatesToSave, ingredientFile);
     }
 
-    public Recipe getRecipeByName(String name) {
+    public Optional<Recipe> getRecipeByName(String name) {
         return recipes.stream()
                 .filter(r -> r.getName().equalsIgnoreCase(name))
-                // feltesszük hogy ilyen nem lesz
-                .findFirst().orElseGet(null);
+                .findFirst(); // 💡 Visszatér Optional<Recipe>
     }
 }

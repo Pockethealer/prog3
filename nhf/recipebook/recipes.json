@@ -1,21 +1,4 @@
 [ {
-  "caloriesPerServing" : 12.34375,
-  "ingredients" : [ {
-    "name" : "tej",
-    "quantity" : 1.0,
-    "unit" : "cup"
-  }, {
-    "name" : "cukor",
-    "quantity" : 1.0,
-    "unit" : "tbs"
-  } ],
-  "instructions" : "asdfsadf",
-  "name" : "műzli",
-  "preparationTime" : 20,
-  "servings" : 4,
-  "tags" : [ "easy", "fast" ],
-  "totalCalories" : 49.375
-}, {
   "caloriesPerServing" : 142.625,
   "ingredients" : [ {
     "name" : "Liszt",

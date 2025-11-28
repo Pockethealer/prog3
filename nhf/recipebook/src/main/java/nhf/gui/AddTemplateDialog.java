@@ -36,7 +36,7 @@ public class AddTemplateDialog extends JDialog {
         setLayout(new BorderLayout(10, 10));
         JPanel nutrientPanel = new JPanel(new GridLayout(5, 2, 10, 10));
         NumberFormat doubleFormat = NumberFormat.getNumberInstance(Locale.forLanguageTag("hu-HU"));
-        doubleFormat.setGroupingUsed(false);
+        doubleFormat.setMinimumFractionDigits(1);
         NumberFormatter formatter = new NumberFormatter(doubleFormat);
         formatter.setValueClass(Double.class);
         formatter.setAllowsInvalid(false);

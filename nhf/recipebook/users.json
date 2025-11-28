@@ -1,10 +1,10 @@
 {
   "haha" : {
-    "favoriteRecipes" : [ ],
+    "favoriteRecipes" : [ "műzli" ],
     "username" : "haha",
     "weeklyMenu" : {
-      "Monday" : [ "műzli" ],
-      "Thursday" : [ "Egyszerű Szirup Alap" ],
+      "Monday" : [ ],
+      "Thursday" : [ ],
       "Friday" : [ ],
       "Sunday" : [ ],
       "Wednesday" : [ ],
@@ -13,10 +13,10 @@
     }
   },
   "test" : {
-    "favoriteRecipes" : [ ],
+    "favoriteRecipes" : [ "műzli", "Egyszerű Szirup Alap" ],
     "username" : "test",
     "weeklyMenu" : {
-      "Monday" : [ ],
+      "Monday" : [ "Mini Tészta Adag", "műzli" ],
       "Thursday" : [ ],
       "Friday" : [ ],
       "Sunday" : [ ],

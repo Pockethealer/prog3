@@ -5,6 +5,7 @@ import nhf.logic.UserManager;
 import nhf.model.User;
 import nhf.model.Recipe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,6 +13,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -532,7 +534,7 @@ public class RecipeBookGUI extends JFrame {
         shoppingListArea.setCaretPosition(0);
     }
 
-    private void refreshWeeklyMenuTab() {
+    public void refreshWeeklyMenuTab() {
         int weeklyMenuIndex = mainTabbedPane.indexOfTab(" • Weekly Menu");
 
         if (weeklyMenuIndex != -1) {
@@ -589,7 +591,7 @@ public class RecipeBookGUI extends JFrame {
         }
 
         User currentUser = userManager.getCurrentlyLoggedInUser();
-        currentUser.getWeeklyMenu().get(day).remove(selectedRecipe);
+        currentUser.getWeeklyMenu().get(day).remove(selectedRecipe.getName());
         listModel.remove(selectedIndex);
         updateShoppingList();
         updateNutrientArea(day, convertWeeklyMenuNamesToObjects(currentUser.getWeeklyMenu()).get(day));
@@ -682,11 +684,30 @@ public class RecipeBookGUI extends JFrame {
         if (weeklyMenuNames == null || weeklyMenuNames.isEmpty()) {
             return Collections.emptyMap();
         }
-        return weeklyMenuNames.entrySet().stream()
+        final List<String> namesToRemove = new ArrayList<>();
+        Map<String, List<Recipe>> weeklyMenuObjects = weeklyMenuNames.entrySet().stream()
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         entry -> entry.getValue().stream()
-                                .map(recipeBook::getRecipeByName)
+                                .map(name -> {
+                                    Optional<Recipe> recipeOptional = recipeBook.getRecipeByName(name);
+                                    if (recipeOptional.isEmpty()) {
+                                        namesToRemove.add(name);
+                                    }
+                                    return recipeOptional;
+                                })
+                                .filter(Optional::isPresent)
+                                .map(Optional::get)
                                 .toList()));
+        if (!namesToRemove.isEmpty()) {
+            weeklyMenuNames.values().forEach(nameList -> nameList.removeAll(namesToRemove));
+            try {
+                userManager.exportUsers();
+            } catch (Exception e) {
+                System.err.println("Error removing deleted recipe references: " + e.getMessage());
+            }
+        }
+
+        return weeklyMenuObjects;
     }
 }

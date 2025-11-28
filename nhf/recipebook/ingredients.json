@@ -23,6 +23,17 @@
     "CUP" : 240.0
   }
 }, {
+  "allUnitsOfIngredient" : [ "G", "ML" ],
+  "caloriesPer100g" : 1000.0,
+  "carbPer100g" : 10.0,
+  "fatPer100g" : 10.0,
+  "name" : "olaj",
+  "proteinPer100g" : 10.0,
+  "unitToGramFactors" : {
+    "G" : 10.0,
+    "ML" : 1.0
+  }
+}, {
   "allUnitsOfIngredient" : [ "G", "KG", "CUP", "TABLESPOON", "TEASPOON" ],
   "caloriesPer100g" : 364.0,
   "carbPer100g" : 76.0,
@@ -69,5 +80,37 @@
   "unitToGramFactors" : {
     "G" : 1.0,
     "CUP" : 10.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "POUND", "G" ],
+  "caloriesPer100g" : 400.0,
+  "carbPer100g" : 80.0,
+  "fatPer100g" : 0.0,
+  "name" : "műzli",
+  "proteinPer100g" : 20.0,
+  "unitToGramFactors" : {
+    "POUND" : 10.0,
+    "G" : 1.0
+  }
+}, {
+  "allUnitsOfIngredient" : [ "G" ],
+  "caloriesPer100g" : 10.22,
+  "carbPer100g" : 0.0,
+  "fatPer100g" : 0.0,
+  "name" : "kőszén",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 100.111
+  }
+}, {
+  "allUnitsOfIngredient" : [ "G", "ML" ],
+  "caloriesPer100g" : 400.0,
+  "carbPer100g" : 100.0,
+  "fatPer100g" : 0.0,
+  "name" : "méz",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "ML" : 14.0
   }
 } ]

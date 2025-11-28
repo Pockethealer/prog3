@@ -89,6 +89,13 @@ public class AddIngredientDialog extends JDialog {
             }
             Unit unitType = Unit.valueOf(unitString.toUpperCase());
             this.recipeIngredient = new RecipeIngredient(templateName, quantity, unitType);
+            IngredientTemplate template = templateMap.get(templateName);
+
+            if (template != null) {
+                recipeIngredient.setTemplate(template);
+            } else {
+                throw new Exception("Template not found.");
+            }
             dispose();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Something went wrong: " + e.getMessage(), "Hiba",
