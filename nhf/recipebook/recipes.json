@@ -61,4 +61,17 @@
   "servings" : 1,
   "tags" : [ "egyszemélyes" ],
   "totalCalories" : 441.5
+}, {
+  "caloriesPerServing" : 25.0,
+  "ingredients" : [ {
+    "name" : "káposzta",
+    "quantity" : 1.0,
+    "unit" : "pc"
+  } ],
+  "instructions" : "asdfasdfasdf",
+  "name" : "Káposztás tészta",
+  "preparationTime" : 60,
+  "servings" : 2,
+  "tags" : [ "healthy" ],
+  "totalCalories" : 50.0
 } ]

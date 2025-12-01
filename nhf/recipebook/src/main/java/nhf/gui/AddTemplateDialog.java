@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 public class AddTemplateDialog extends JDialog {
 
@@ -76,7 +75,7 @@ public class AddTemplateDialog extends JDialog {
     }
 
     private JPanel setupUnitFactorsPanel(NumberFormatter formatter) {
-        JPanel panel = new JPanel(new GridLayout(0, 4, 5, 5)); // 0 sor, 4 oszlop (Unit neve, input mező)
+        JPanel panel = new JPanel(new GridLayout(0, 4, 5, 5));
         panel.setBorder(BorderFactory.createTitledBorder("Unit to Gram Factors"));
         for (Unit unit : Unit.getAllUnits()) {
             String unitName = unit.name();

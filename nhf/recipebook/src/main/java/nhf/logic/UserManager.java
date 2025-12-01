@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.io.File;
 
 public class UserManager {
@@ -115,5 +114,5 @@ public class UserManager {
     public List<String> getAllUsernames() {
         return new ArrayList<>(users.keySet());
     }
-    
+
 }

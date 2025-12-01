@@ -91,16 +91,6 @@ public class RecipeBookGUI extends JFrame {
     private void setupMenuBar() {
         JMenuBar menuBar = new JMenuBar();
 
-        /*
-         * A jövőben ha hozzáadok speciális importot illetve szerver side
-         * szinkronizálást
-         * JMenu fileMenu = new JMenu("File");
-         * JMenuItem importItem = new JMenuItem("Import Recipes (JSON)");
-         * JMenuItem exportItem = new JMenuItem("Export Recipes (JSON)");
-         * fileMenu.add(importItem);
-         * fileMenu.add(exportItem);
-         */
-
         JMenu userMenu = new JMenu("User");
         JMenuItem loginItem = new JMenuItem("Select user");
         loginItem.addActionListener(e -> selectUser());
@@ -119,7 +109,6 @@ public class RecipeBookGUI extends JFrame {
 
         recipeMenu.add(addTemplateItem);
         recipeMenu.add(deleteTemplateItem);
-        /* menuBar.add(fileMenu); */
         menuBar.add(userMenu);
         menuBar.add(recipeMenu);
 
@@ -359,7 +348,7 @@ public class RecipeBookGUI extends JFrame {
 
                     for (String selectedTag : selectedTags) {
                         if (!recipeTags.contains(selectedTag)) {
-                            return false; // Hiányzik egy kötelező címke
+                            return false;
                         }
                     }
                 }
@@ -699,6 +688,10 @@ public class RecipeBookGUI extends JFrame {
                                 .filter(Optional::isPresent)
                                 .map(Optional::get)
                                 .toList()));
+        /*
+         * ha valamilyen bug, vagy konkurrens módosítás folytán van benne olyan ami nem
+         * mapelődik semmire akkor kitöröljük
+         */
         if (!namesToRemove.isEmpty()) {
             weeklyMenuNames.values().forEach(nameList -> nameList.removeAll(namesToRemove));
             try {

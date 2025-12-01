@@ -93,7 +93,6 @@ public class RecipeBook {
     }
 
     // Logikai metódusok
-    // TODO remove not used methods
     /**
      * A filtereléshez használt metódus
      * 
@@ -127,11 +126,12 @@ public class RecipeBook {
         jsonHandler.saveRecipes(this.recipes, recipeFile);
     }
 
-    // mivel egyszer importálunk ezért ezt összevontam az összetevőkkel
+    // mivel egyszer importálunk ezért ezt összevontam az összetevők importálásával
     public void importRecipes() throws Exception {
         List<IngredientTemplate> templates = jsonHandler.loadIngredientTemplates(ingredientFile);
         this.recipes = jsonHandler.loadRecipes(recipeFile);
         templates.forEach(t -> ingredientTemplates.put(t.getName().toLowerCase(), t));
+        /* mivel a templátok nincsenek linkelve ezért ezt itt megteszem */
         linkRecipeIngredientsToTemplates();
     }
 
@@ -151,12 +151,6 @@ public class RecipeBook {
                 });
     }
 
-    /**
-     * Ellenőrzi, hogy a megadott receptnév már létezik-e
-     * 
-     * @param name a keresett név
-     * @return true, ha már létezik
-     */
     public boolean recipeNameExists(String name) {
         final String searchName = name.trim().toLowerCase();
         return recipes.stream()
@@ -209,9 +203,13 @@ public class RecipeBook {
         jsonHandler.saveIngredientTemplates(templatesToSave, ingredientFile);
     }
 
+    /*
+     * optional-t térít vissza, mert nem biztos hogy létezik, ahol szükség van erre
+     * a függvényre(user kedvenc) ott kezelve van.
+     */
     public Optional<Recipe> getRecipeByName(String name) {
         return recipes.stream()
                 .filter(r -> r.getName().equalsIgnoreCase(name))
-                .findFirst(); // 💡 Visszatér Optional<Recipe>
+                .findFirst();
     }
 }

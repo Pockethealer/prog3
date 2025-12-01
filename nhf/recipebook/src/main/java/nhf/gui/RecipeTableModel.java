@@ -6,7 +6,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 /**
- * Custom TableModel, kapcsolat a recept modell és a tablemodell között
+ * Custom TableModel
  */
 public class RecipeTableModel extends AbstractTableModel {
 

@@ -108,7 +108,7 @@ public class Recipe {
     @Override
     public boolean equals(Object o) {
         if (this == o)
-            return true; // Ha ugyanaz a referencia
+            return true;
         if (o == null || getClass() != o.getClass())
             return false;
         Recipe recipe = (Recipe) o;

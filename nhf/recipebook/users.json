@@ -1,28 +1,28 @@
 {
-  "haha" : {
-    "favoriteRecipes" : [ "műzli" ],
-    "username" : "haha",
+  "test" : {
+    "favoriteRecipes" : [ "Könnyű Kifli Tészta" ],
+    "username" : "test",
     "weeklyMenu" : {
-      "Monday" : [ ],
+      "Monday" : [ "Egyszerű Szirup Alap" ],
       "Thursday" : [ ],
-      "Friday" : [ ],
+      "Friday" : [ "Egyszerű Szirup Alap" ],
       "Sunday" : [ ],
       "Wednesday" : [ ],
-      "Tuesday" : [ ],
+      "Tuesday" : [ "Káposztás tészta" ],
       "Saturday" : [ ]
     }
   },
-  "test" : {
-    "favoriteRecipes" : [ "műzli", "Egyszerű Szirup Alap" ],
-    "username" : "test",
+  "test2" : {
+    "favoriteRecipes" : [ "Mini Tészta Adag" ],
+    "username" : "test2",
     "weeklyMenu" : {
-      "Monday" : [ "Mini Tészta Adag", "műzli" ],
+      "Monday" : [ "Mini Tészta Adag" ],
       "Thursday" : [ ],
       "Friday" : [ ],
       "Sunday" : [ ],
-      "Wednesday" : [ ],
+      "Wednesday" : [ "Mini Tészta Adag" ],
       "Tuesday" : [ ],
-      "Saturday" : [ "Egyszerű Szirup Alap" ]
+      "Saturday" : [ ]
     }
   }
 }

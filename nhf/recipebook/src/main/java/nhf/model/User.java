@@ -1,26 +1,18 @@
 package nhf.model;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-/**
- * Represents a simplified user, storing their name, favorites (List),
- * and weekly menu (Map) directly.
- */
 public class User {
 
     private String username;
     private List<String> favoriteRecipes;
 
-    // A heti menü: String (nap neve) -> List<Recipe>
+    // A heti menü: String-receptek map
     private Map<String, List<String>> weeklyMenu;
 
-    // 💡 Szükséges a Jackson deszerializációhoz!
     public User() {
         this.favoriteRecipes = new ArrayList<>();
         this.weeklyMenu = initializeWeeklyMenu();

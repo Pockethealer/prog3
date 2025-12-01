@@ -32,6 +32,7 @@ public enum Unit {
         return displayValue;
     }
 
+    /* bevásárló listához */
     public Map<String, Object> convertToMetric(double quantity) {
         if (metricUnit.equals("g") || metricUnit.equals("ml")) {
             double convertedQuantity = quantity * conversionFactor;

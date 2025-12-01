@@ -16,10 +16,9 @@ public class IngredientTemplate {
     private double proteinPer100g = 0.0;
     private double fatPer100g = 0.0;
     private double carbPer100g = 0.0;
-    // mindig az első a metrikus
     private Map<String, Double> unitToGramFactors;
 
-    // --- Konstruktorok és Metódusok ---
+    /* Konstruktorok */
 
     public IngredientTemplate() {
         this.unitToGramFactors = new HashMap<>();
@@ -90,6 +89,7 @@ public class IngredientTemplate {
         return unitToGramFactors.keySet();
     }
 
+    /* az összehasonlítás felülírása */
     @Override
     public boolean equals(Object o) {
         if (this == o)

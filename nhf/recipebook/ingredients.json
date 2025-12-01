@@ -11,6 +11,17 @@
     "TEASPOON" : 6.0
   }
 }, {
+  "allUnitsOfIngredient" : [ "G", "PIECES" ],
+  "caloriesPer100g" : 10.0,
+  "carbPer100g" : 5.0,
+  "fatPer100g" : 0.0,
+  "name" : "káposzta",
+  "proteinPer100g" : 0.0,
+  "unitToGramFactors" : {
+    "G" : 1.0,
+    "PIECES" : 500.0
+  }
+}, {
   "allUnitsOfIngredient" : [ "ML", "L", "CUP" ],
   "caloriesPer100g" : 0.0,
   "carbPer100g" : 0.0,

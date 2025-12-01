@@ -26,8 +26,6 @@ public class JsonHandler {
                 .build();
     }
 
-    // --- SAVE / EXPORT Metódusok ---
-
     public void saveRecipes(List<Recipe> recipes, File file) throws Exception {
         mapper.writeValue(file, recipes);
     }
@@ -40,14 +38,10 @@ public class JsonHandler {
         mapper.writeValue(file, templates);
     }
 
-    // --- LOAD / IMPORT Metódusok ---
-
     public List<Recipe> loadRecipes(File file) throws Exception {
         if (!file.exists() || file.length() == 0) {
             return new ArrayList<>();
         }
-        // Mivel listát olvasunk futási időben ezért kell a Typefactory construct
-        // collection metódusa
         return mapper.readValue(file,
                 mapper.getTypeFactory().constructCollectionType(List.class, Recipe.class));
     }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * JUnit tests for the RecipeBook business logic class.
+ * recipebook tests
  */
 class RecipeBookTest {
 
@@ -30,9 +30,9 @@ class RecipeBookTest {
         List<String> tags = new ArrayList<>();
         tags.add("easy");
         tags.add("fast");
-        pizza = new Recipe("Pepperoni Pizza", 45, 4, "Bake it.", new ArrayList<>(), tags);
-        cake = new Recipe("Chocolate Cake", 60, 8, "Mix it.", new ArrayList<>(), tags);
-        applePie = new Recipe("Grandma's Apple Pie", 90, 6, "Slice it.", new ArrayList<>(), tags);
+        pizza = new Recipe("Pizza", 45, 4, "Bake it.", new ArrayList<>(), tags);
+        cake = new Recipe("Cake", 60, 8, "Mix it.", new ArrayList<>(), tags);
+        applePie = new Recipe("Apple Pie", 90, 6, "Slice it.", new ArrayList<>(), tags);
 
         recipeBook.addRecipe(pizza);
         recipeBook.addRecipe(cake);
@@ -49,7 +49,7 @@ class RecipeBookTest {
     void testRemoveRecipe() {
         boolean removed = recipeBook.removeRecipe(cake);
 
-        assertTrue(removed, "A süteményt sikeresen el kellett távolítani.");
+        assertTrue(removed, "the cake is a lie");
         assertEquals(2, recipeBook.getRecipes().size(),
                 "recipe ing. size does not match expected size after removal");
         assertFalse(recipeBook.getRecipes().contains(cake),

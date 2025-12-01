@@ -52,6 +52,10 @@ public class RecipeIngredient {
         this.template = template;
     }
 
+    /*
+     * segédfüggvények kalória számoláshoz, jsonignore csak azért kell hogy szebb
+     * legyen a keletkező json, mert ezek nem kellenek bele
+     */
     @JsonIgnore
     public double getTotalCalories() {
         if (template == null || template.getCaloriesPer100g() <= 0) {
